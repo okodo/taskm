@@ -1,0 +1,15 @@
+!!! 5
+%html
+  %head
+    %meta{"content" => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}
+  %body{bgcolor: "#EAEAEA", style: "margin: 0; padding: 0; background: #EAEAEA;"}
+    %br
+    .container{style: "width: 80%; margin: 10px auto; background-color: #FFFFFF; font-size: 12px;"}
+      .header{style: "text-align: center; color: #BBBBBB; font: normal 20px Helvetica, Arial, sans-serif; margin: 0; padding: 0; line-height: 32px; background-color: #333333"}
+        Task Manager
+      .message{style: "padding: 20px;"}
+        = yield
+      .footer{style: "border-top: 1px solid #E5E5E5; padding: 20px;"}
+        %p{style: "font-size: 10px; font-style: italic;"}
+          Это сообщение было сгенирировано автоматически. Пожалуйста не отвечайте не него.
+    %br

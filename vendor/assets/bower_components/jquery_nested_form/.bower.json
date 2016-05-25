@@ -1,0 +1,14 @@
+{
+  "name": "jquery_nested_form",
+  "homepage": "https://github.com/ryanb/nested_form",
+  "version": "0.3.2",
+  "_release": "0.3.2",
+  "_resolution": {
+    "type": "version",
+    "tag": "0.3.2",
+    "commit": "a25eebe8205e4e63899873b716535def6c1f5a9d"
+  },
+  "_source": "git://github.com/ryanb/nested_form.git",
+  "_target": "*",
+  "_originalSource": "git://github.com/ryanb/nested_form"
+}
