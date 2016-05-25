@@ -1,0 +1,18 @@
+.main-padding
+  %h1.page-header
+    = Task.model_name.human(count: 2)
+  - if @tasks.present?
+    %table.table.table-striped
+      %thead
+        %tr
+          - %i(id created_at name email).each do |a|
+            %th
+              = Task.human_attribute_name(a)
+      %tbody
+        = content_tag_for(:tr, @tasks) do |task|
+          - %i(id created_at name email).each do |a|
+            %td= a.eql?(:created_at) ? I18n.l(task.public_send(a), format: :am_um) : task.public_send(a)
+    %nav.with-pagination
+      = will_paginate @tasks, renderer: BootstrapPagination::Rails
+  - else
+    .no-items-container= I18n.t('no_entries')

@@ -3,6 +3,7 @@
   "dependencies": {
     "jquery": "latest",
     "jquery-ujs": "latest",
+    "jquery.cookie": "latest",
     "bootstrap": "latest",
     "bootstrap-toggle": "latest",
     "bootstrap-sass": "latest",

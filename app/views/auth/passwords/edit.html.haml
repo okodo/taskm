@@ -1,0 +1,17 @@
+.col-md-6.col-md-offset-3
+  = form_for(@user, url: passwords_path, html: { method: :put, id: 'auth-form' }) do |f|
+    = f.hidden_field :reset_password_token
+    %h1.page-header
+      = I18n.t('auth.passwords.new.form.header')
+    - if @user.errors.any?
+      %ul.form-errors.alert-danger
+        = @user.errors.full_messages.map { |msg| content_tag(:li, msg.html_safe) }.join.html_safe
+    .form-group
+      %div= f.label :password
+      = f.password_field :password, { class: 'form-control', required: true }
+    .form-group
+      %div= f.label :password_confirmation
+      = f.password_field :password_confirmation, { class: 'form-control', required: true }
+    .form-group
+      = f.submit I18n.t('save'), { class: 'btn btn-primary pull-right' }
+      .clearfix

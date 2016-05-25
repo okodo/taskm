@@ -41,4 +41,39 @@ describe Task do
       expect { subject.finish }.to raise_error(AASM::InvalidTransition)
     end
   end
+
+  describe 'scopes' do
+    let!(:tasks) { create_list(:task, 5) }
+
+    it 'should find only one by query' do
+      expect(Task.filter(query: Task.first.name).length).to be_eql(1)
+    end
+
+    it 'should find all by empty query' do
+      expect(Task.filter(query: nil).length).to be_eql(tasks.length)
+    end
+
+    it 'should find all by given query' do
+      expect(Task.filter(query: 'Task').length).to be_eql(tasks.length)
+    end
+
+    it 'should find all by empty assignee' do
+      expect(Task.filter(assignee_id: nil).length).to be_eql(tasks.length)
+    end
+
+    it 'should find only one by assignee' do
+      expect(Task.filter(assignee_id: User.first.id).length).to be_eql(1)
+    end
+
+    it 'started first' do
+      tasks[2].start!
+      expect(Task.filter({}).first).to be_eql(tasks[2])
+    end
+
+    it 'finished last' do
+      tasks[2].start!
+      tasks[2].finish!
+      expect(Task.filter({}).last).to be_eql(tasks[2])
+    end
+  end
 end

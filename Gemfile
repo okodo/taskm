@@ -28,7 +28,6 @@ gem 'aasm'
 gem 'bcrypt', '~> 3.1.7'
 
 gem 'cancancan'
-gem 'unicorn'
 
 group :development do
   gem 'letter_opener'
@@ -51,18 +50,22 @@ group :development, :test do
   gem 'guard-rspec'
   gem 'rubocop', require: false
   gem 'shoulda'
+  gem 'factory_girl_rails'
 end
 
 group :test do
-  gem 'factory_girl_rails'
   gem 'webmock', require: false
   gem 'rspec-rails'
   gem 'simplecov', require: false
   gem 'capybara'
   gem 'capybara-ng'
+  gem 'capybara-selenium'
   gem 'headless'
-  gem 'poltergeist', require: false
   gem 'database_cleaner'
   gem 'connection_pool'
   gem 'nyan-cat-formatter'
+end
+
+group :production do
+  gem 'unicorn'
 end

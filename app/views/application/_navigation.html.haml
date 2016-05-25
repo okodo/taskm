@@ -1,0 +1,30 @@
+%nav.navbar.navbar-fixed-top.one-page.navbar-default{role: "navigation"}
+  .container-fluid
+    - if content_for?(:sidebar)
+      .navbar-header.pull-left
+        %button#mobile-sidebar-toggle.navbar-toggle.collapsed.btn.btn-default.btn-circle{ aria: { expanded: 'false', controls: 'navbar'}, data: { sidebar: cookies[:sidebar_toggle_taskm] } }
+          %span.glyphicon.glyphicon-chevron-right
+    .navbar-header
+      %button.navbar-toggle{type: 'button', data: {toggle: 'collapse', target: '#custom-collapse'}}
+        %span.sr-only= 'Toggle navigation'
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      = link_to I18n.t('application_title'), root_path, {class: 'navbar-brand', data: { 'no-turbolink' => true}}
+    #custom-collapse.collapse.navbar-collapse
+      %ul.nav.navbar-nav.navbar-left
+        - if can?(:read, Task)
+          %li
+            = link_to Task.model_name.human(count: 2), admin_tasks_path
+        - if can?(:read, User)
+          %li
+            = link_to User.model_name.human(count: 2), users_path
+      %ul.nav.navbar-nav.navbar-right
+        - if user_signed_in?
+          %li
+            = link_to content_tag(:span, nil, {class: 'glyphicon glyphicon-user'}), [:edit, current_user], {class: 'mobile-text-after', data: { 'no-turbolink' => true, toggle: 'tooltip', placement: 'bottom'}, title: " #{I18n.t('navi_links.settings', email: current_user.email)}"}
+          %li
+            = link_to content_tag(:span, nil, {class: 'glyphicon glyphicon-off'}), destroy_sessions_path, {id: 'sign-out-link', class: 'mobile-text-after', data: { 'no-turbolink' => true, toggle: 'tooltip', placement: 'bottom'}, title: " #{I18n.t('navi_links.sign_out', email: current_user.email)}"}
+        - else
+          %li
+            = link_to I18n.t('auth.signin_link'), new_session_path, {class: 'mobile-text-after'}

@@ -1,0 +1,9 @@
+#turbo-loader
+  .bubblingG
+    %span#bubblingG_1
+    %span#bubblingG_2
+    %span#bubblingG_3
+- %i(notice warning alert error).each do |name|
+  - if flash[name].present?
+    #flash-message-full.invisible{data: {type: name.eql?(:notice) ? 'success' : (name.eql?(:warning) ? 'info' : 'danger')}}
+      = flash[name]

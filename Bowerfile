@@ -1,5 +1,6 @@
 asset 'jquery'
 asset 'jquery-ujs'
+asset 'jquery.cookie'
 asset 'bootstrap'
 asset 'bootstrap-toggle'
 asset 'bootstrap-sass'

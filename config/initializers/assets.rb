@@ -7,3 +7,6 @@ end
 # Precompile Bootstrap fonts
 Rails.application.config.assets.precompile << %r{bootstrap-sass/assets/fonts/bootstrap/[\w-]+\.(?:eot|svg|ttf|woff2?)$}
 Rails.application.config.assets.precompile << %r{font-awesome-sass/assets/fonts/font-awesome/[\w-]+\.(?:eot|otf|svg|ttf|woff2?)$}
+
+Rails.application.config.assets.precompile += %w(turboloader.css)
+Rails.application.config.assets.precompile += %w(checkboxes.css)

@@ -49,6 +49,10 @@ module Authenticatable
     Postman.password_forgotten(self).deliver_now
   end
 
+  def clear_password_forgotten
+    update_columns(reset_password_token: nil, reset_password_sent_at: nil)
+  end
+
   def valid_password?(password)
     return false if encrypted_password.blank?
     bcrypt = ::BCrypt::Password.new(encrypted_password)

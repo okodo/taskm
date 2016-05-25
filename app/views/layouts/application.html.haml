@@ -1,0 +1,38 @@
+!!! 5
+%html{lang: "de-DE"}
+  %head
+    %title
+      = I18n.t('application_title')
+    %meta{name: "viewport", content: "width=device-width, initial-scale=1.0"}
+
+    = stylesheet_link_tag :application, :media => "all", 'data-turbolinks-track' => true
+
+    = javascript_include_tag :application, 'data-turbolinks-track' => true
+
+    /[if lt IE 9]
+      = javascript_include_tag 'https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js'
+      = javascript_include_tag 'https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js'
+
+    = csrf_meta_tag
+
+  %body
+    /[if !IE]
+      %noscript
+        .alert.alert-danger{role: 'alert'}= I18n.t(:no_javascript)
+
+    = render 'messages'
+    = render 'navigation'
+    = render_crumbs format: :html_list, ul_class: 'breadcrumb'
+
+    - if content_for?(:sidebar)
+      #sidebar{data: { sidebar: cookies[:sidebar_toggle_taskm] }}
+        #sidebar-collapse.sidebar-toggle.sidebar-collapse
+          = link_to content_tag(:span, nil, {class: 'glyphicon glyphicon-chevron-left'}), "javascript: sidebar('toggle');", {class: 'btn btn-default btn-circle'}
+        = yield :sidebar
+
+    #main{role: 'main', data: { sidebar: content_for?(:sidebar) ? cookies[:sidebar_toggle_taskm] : 'show' }}
+      - if content_for?(:sidebar)
+        = yield
+      - else
+        %div.container
+          = yield

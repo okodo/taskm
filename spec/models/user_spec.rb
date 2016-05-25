@@ -77,6 +77,15 @@ describe User do
         expect(user.remember_created_at).to be_blank
         expect(user.remember_token).to be_blank
       end
+
+      it 'should clear remember token' do
+        user.password_forgotten
+        expect(user.reload.reset_password_sent_at).to be_present
+        expect(user.reload.reset_password_token).to be_present
+        user.clear_password_forgotten
+        expect(user.reload.reset_password_sent_at).to be_blank
+        expect(user.reload.reset_password_token).to be_blank
+      end
     end
 
     it 'send email with edit password link' do
@@ -98,6 +107,35 @@ describe User do
         subject.save
         expect(subject.valid_password?('Pa55w0rd!')).to be_truthy
       end
+    end
+  end
+
+  describe 'scopes' do
+    let!(:users) { create_list(:user, 5) }
+    let!(:user) { create(:user, :not_admin) }
+
+    it 'should find only one by query' do
+      expect(User.filter(query: User.first.email).length).to be_eql(1)
+    end
+
+    it 'should find all by empty query' do
+      expect(User.filter(query: nil).length).to be_eql(users.length + 1)
+    end
+
+    it 'should find all by given query' do
+      expect(User.filter(query: 'factory.com').length).to be_eql(users.length + 1)
+    end
+
+    it 'should find all by empty role' do
+      expect(User.filter(role: nil).length).to be_eql(users.length + 1)
+    end
+
+    it 'should find only users' do
+      expect(User.filter(role: 'user').length).to be_eql(1)
+    end
+
+    it 'should find only admins' do
+      expect(User.filter(role: 'admin').length).to be_eql(users.length)
     end
   end
 end

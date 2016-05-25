@@ -1,0 +1,18 @@
+.col-md-6.col-md-offset-3
+  = form_for(@user, url: sessions_path, html: { id: 'auth-form' }) do |f|
+    %h1.page-header
+      = t('.form.header')
+    .form-group
+      %div= f.label :email
+      = f.email_field :email, { class: 'form-control', required: true }
+    .form-group
+      %div= f.label :password
+      = f.password_field :password, { class: 'form-control', required: true }
+    .form-group.checkbox
+      = check_box_tag :remember_me, 1, false
+      %label{for: :remember_me}= t('.form.remember_me')
+      = link_to t('.form.password_forgotten'), new_password_path, { class: 'pull-right' }
+      .clearfix
+    .form-group
+      = f.submit t('.form.submit'), { id: 'auth-submit-button', class: 'btn btn-primary pull-right' }
+      .clearfix

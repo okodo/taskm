@@ -1,4 +1,73 @@
 ru:
+  time:
+    formats:
+      date: ! '%d.%m.%Y'
+      very_strong: ! '%d.%m.%Y %H:%M'
+      am_um: ! '%d.%m.%Y %H:%M'
+      am: ! '%H:%M'
+  activerecord:
+    models:
+      task:
+        one: Задание
+        few: Задания
+        other: Заданий
+      user:
+        one: Пользователь
+        few: Пользователи
+        other: Пользователей
+    attributes:
+      task:
+        id: Ключ
+        created_at: Дата
+        name: Название
+        email: Пользователь
+      user:
+        email: Е-Майл
+        password: Пароль
+        password_confirmation: Подтверждение
   postman:
     subjects:
       password_forgotten: Восстановление пароля
+      notify_new_user: Новая учётная запись
+  auth:
+    errors:
+      email_doesnt_exist: Пользователь с указанным емайл адресом не существует
+      invalid_password: Неверный пароль
+      already_signed_in: Аккаунт уже авторизирован
+      no_permissions: У вас нет доступа к запрашиваемому ресурсу
+    reset_password:
+      instruction_sent: На ваш емайл адрес была отправлена инструкция по восстановлению пароля
+      wrong_token: Неверный токен
+      successfully_changed: Ваш пароль был изменён
+    signin_link: Войти
+    sessions:
+      new:
+        form:
+          header: Войти в систему
+          submit: Войти
+          remember_me: Запомнить
+          password_forgotten: Забыл пароль
+    passwords:
+      new:
+        form:
+          header: Восстановление пароля
+          submit: Сбросить
+  wrong_url: Запрашиваемый ресурс не существует
+  record_successfully:
+    created: Запись успешно создана
+    destroyed: Запись успешно удалена
+    updated: Запись успешно удалена
+  users:
+    successfully_updated: Запись успешна изменена
+    successfully_updated_self: Ваши настройки успешно изменены
+  no_javascript: "Чтобы пользоваться всеми функциями, активируйте Javascript в своём браузере."
+  application_title: Task Manager
+  no_entries: Список пуст
+  will_paginate:
+    previous_label: "&laquo;"
+    next_label: "&raquo;"
+    page_gap: "&hellip;"
+  navi_links:
+    settings: "Настройки аккаунта %{email}"
+    sign_out: "Выйти %{email}"
+  save: Сохранить
