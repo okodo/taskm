@@ -71,3 +71,20 @@ ru:
     settings: "Настройки аккаунта %{email}"
     sign_out: "Выйти %{email}"
   save: Сохранить
+  default_search: Поиск
+  prompt_all: Все
+  reset_filter: Сбросить
+  filter_by_assignee: Пользователь
+  crumbs:
+    edit_item: Изменение записи
+    new_item: Создание новой записи
+  tasks_states:
+    new: Новая
+    started: В процессе
+    finished: Законченная
+  tasks_events:
+    start: Начать
+    finish: Закончить
+    reopen: Открыть
+  edit: Редактировать
+  destroy: Удалить

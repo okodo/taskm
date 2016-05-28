@@ -22,7 +22,6 @@
 
     = render 'messages'
     = render 'navigation'
-    = render_crumbs format: :html_list, ul_class: 'breadcrumb'
 
     - if content_for?(:sidebar)
       #sidebar{data: { sidebar: cookies[:sidebar_toggle_taskm] }}
@@ -31,6 +30,7 @@
         = yield :sidebar
 
     #main{role: 'main', data: { sidebar: content_for?(:sidebar) ? cookies[:sidebar_toggle_taskm] : 'show' }}
+      = render_crumbs format: :html_list, ul_class: 'breadcrumb'
       - if content_for?(:sidebar)
         = yield
       - else

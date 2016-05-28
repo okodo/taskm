@@ -3,9 +3,10 @@ class Admin::TasksController < ApplicationController
   before_action :require_authentication
   load_and_authorize_resource params_method: :task_params
   before_action :set_users, only: %i(index new edit)
+  before_filter :set_crumbs, except: %i(destroy start finish reopen)
 
   def index
-    @tasks = @tasks.filter(params).page(page_parameter).load
+    @tasks = @tasks.preload(:user).filter(params).page(page_parameter).load
   end
 
   def show
@@ -37,7 +38,7 @@ class Admin::TasksController < ApplicationController
 
   def destroy
     @task.destroy
-    redirect_to admin_tasks_path, notice: I18n.t('record_successfully.destroyed')
+    render nothing: true
   end
 
   def start
@@ -66,6 +67,14 @@ class Admin::TasksController < ApplicationController
   def set_users
     return unless current_user.admin?
     @users = User.order('email').all
+  end
+
+  def set_crumbs
+    add_crumb Task.model_name.human(count: 2), admin_tasks_path
+    add_crumb @task.name, admin_task_path(@task) if action_name.eql?('edit')
+    add_crumb @task.name if action_name.eql?('show')
+    add_crumb I18n.t('crumbs.edit_item') if action_name.eql?('edit')
+    add_crumb I18n.t('crumbs.new_item') if action_name.eql?('new')
   end
 
 end

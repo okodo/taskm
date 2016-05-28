@@ -1,0 +1,63 @@
+- content_for(:sidebar) do
+  = render 'sidebar'
+.main-padding
+  %h1.page-header
+    - if can?(:create, Task)
+      = link_to content_tag(:span, nil, { class: 'glyphicon glyphicon-plus' }) + " #{Task.model_name.human}", new_admin_task_path, { class: 'btn btn-primary pull-right', data: {toggle: 'tooltip', placement: 'bottom' }, title: I18n.t('crumbs.new_item')}
+    = Task.model_name.human(count: 2)
+  - if @tasks.present?
+    %table.table.table-striped
+      %thead
+        %tr
+          %th
+            = Task.human_attribute_name('id')
+          %th
+            = Task.human_attribute_name('name')
+          %th
+            = Task.human_attribute_name('created_at')
+          - if current_user.admin?
+            %th
+              = Task.human_attribute_name('email')
+          %th.with-actions
+            = raw '&nbsp;'
+      %tbody
+        = content_tag_for(:tr, @tasks) do |task|
+          %td
+            = task.id
+          %td
+            = task.name
+          %td
+            = I18n.l(task.created_at, format: :am_um)
+          - if current_user.admin?
+            %td
+              = task.email
+          %td
+            #states-events-gr.btn-group
+              - if task.state.eql?('new')
+                - btn_class = 'btn-success'
+              - elsif task.state.eql?('started')
+                - btn_class = 'btn-warning'
+              - elsif task.state.eql?('finished')
+                - btn_class = 'btn-danger'
+              %button.btn.btn-sm.dropdown-toggle{ class: btn_class, type: 'button', data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' } }
+                - if task.state.eql?('new')
+                  %span.glyphicon.glyphicon-asterisk
+                - elsif task.state.eql?('started')
+                  %span.glyphicon.glyphicon-time
+                - elsif task.state.eql?('finished')
+                  %span.glyphicon.glyphicon-ok
+                %span.caret
+              %ul.dropdown-menu
+                %li
+                  = link_to content_tag(:span, nil, { class: 'glyphicon glyphicon-time' }) + " #{I18n.t('tasks_events.start')}", '#', { class: ('disabled' unless task.may_start?), data: { tid: task.id, event: 'start' } }
+                %li
+                  = link_to content_tag(:span, nil, { class: 'glyphicon glyphicon-ok' }) + " #{I18n.t('tasks_events.finish')}", '#', { class: ('disabled' unless task.may_finish?), data: { tid: task.id, event: 'finish' } }
+                %li
+                  = link_to content_tag(:span, nil, { class: 'glyphicon glyphicon-asterisk' }) + " #{I18n.t('tasks_events.reopen')}", '#', { class: ('disabled' unless task.may_reopen?), data: { tid: task.id, event: 'reopen' } }
+            = link_to content_tag(:span, nil, { class: 'glyphicon glyphicon-eye-open' }), admin_task_path(task), { class: 'btn btn-sm btn-default' }
+            = link_to content_tag(:span, nil, { class: 'glyphicon glyphicon-pencil' }), edit_admin_task_path(task), { class: 'btn btn-sm btn-default' }
+            = link_to content_tag(:span, nil, { class: 'glyphicon glyphicon-trash' }), '#', { class: 'btn btn-sm btn-default destroy-entry', data: { tid: task.id } }
+    %nav.with-pagination
+      = will_paginate @tasks, renderer: BootstrapPagination::Rails
+  - else
+    .no-items-container= I18n.t('no_entries')

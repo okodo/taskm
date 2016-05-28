@@ -1,0 +1,16 @@
+.sidebar-item
+  = form_tag admin_tasks_path, {class: 'nav nav-sidebar navbar-form', method: :get, id: 'search-query-lists-form' } do
+    #search-params-container.invisible
+      = hidden_field_tag :assignee_id, params[:assignee_id]
+    .input-group
+      = search_field_tag :query, params[:query], {class: 'form-control', placeholder: I18n.t('default_search')}
+      %span.input-group-btn
+        %button.btn.btn-default{type: 'submit'}
+          %span.glyphicon.glyphicon-search
+
+- if current_user.admin? && @users.present?
+  .sidebar-item.filter-with-select
+    .sidebar-item-header= I18n.t('filter_by_assignee')
+    = select_tag :assignee_id_select, options_from_collection_for_select(@users, :id, :email, { selected: params[:assignee_id] }), { prompt: I18n.t('prompt_all'), data: {placeholder: I18n.t('prompt_all'), named: 'assignee_id'}, class: 'form-control select-menu' }
+.sidebar-item.reset-filter-link
+  = link_to I18n.t('reset_filter'), admin_tasks_path
