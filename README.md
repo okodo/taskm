@@ -1,4 +1,6 @@
 [![Build Status](https://travis-ci.org/okodo/taskm.svg?branch=master)](http://travis-ci.org/okodo/taskm)
+[![Code Climate](https://codeclimate.com/github/okodo/taskm/badges/gpa.svg)](https://codeclimate.com/github/okodo/taskm)
+[![Test Coverage](https://codeclimate.com/github/okodo/taskm/badges/coverage.svg)](https://codeclimate.com/github/okodo/taskm/coverage)
 
 # Task Manager
 Приложение было сделано в качестве тестового задания.
