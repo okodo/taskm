@@ -1,0 +1,26 @@
+.main-padding
+  %h1.page-header
+    = link_to content_tag(:span, nil, { class: 'glyphicon glyphicon-arrow-left' }), users_path, { class: 'btn btn-primary local-nav-links pull-right' }
+    = link_to content_tag(:span, nil, {class: 'glyphicon glyphicon-pencil' }), [:edit, @user], {class: 'btn btn-primary local-nav-links pull-right' }
+    = link_to content_tag(:span, nil, {class: 'glyphicon glyphicon-plus' }), [:new, :user], {class: 'btn btn-primary local-nav-links pull-right' }
+    = @user.id
+
+  .col-md-8.col-md-offset-2
+    .item
+      .attr-title= "#{User.human_attribute_name(:email)}:"
+      .value= @user.email
+    .item
+      .attr-title= "#{Task.human_attribute_name(:created_at)}:"
+      .value= I18n.l(@user.created_at, format: :am_um)
+    - if @user.tasks.present?
+      %fieldset.item
+        %legend= "#{Task.model_name.human(count: 2)} (#{@user.tasks.size})"
+        %table.table.table-striped
+          %thead
+            %tr
+              %th= Task.human_attribute_name('id')
+              %th= Task.human_attribute_name('name')
+          %tbody
+            = content_tag_for(:tr, @user.tasks) do |task|
+              %td= task.id
+              %td= link_to task.name, [:admin, task]

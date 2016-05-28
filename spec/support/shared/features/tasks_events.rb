@@ -42,4 +42,11 @@ shared_examples_for 'tasks_events' do |_|
     end
     expect(page).to have_css('button.btn.btn-sm.dropdown-toggle.btn-success', visible: true, count: 5)
   end
+
+  it 'delete' do
+    visit admin_tasks_path
+    hide_navbar
+    first("a.destroy-entry[data-tid='#{tasks.first.id}']").click
+    expect(page).to have_css('table.table.table-striped tbody tr', visible: true, count: 4)
+  end
 end

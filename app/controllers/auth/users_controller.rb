@@ -2,6 +2,7 @@ class Auth::UsersController < ApplicationController
 
   before_action :require_authentication
   load_and_authorize_resource
+  before_filter :set_crumbs, except: %i(destroy)
 
   def index
     @users = @users.filter(params).page(page_parameter).load
@@ -43,10 +44,18 @@ class Auth::UsersController < ApplicationController
 
   def destroy
     @user.destroy
-    redirect_to users_path, notice: I18n.t('record_successfully.destroyed')
+    render nothing: true
   end
 
   private
+
+  def set_crumbs
+    add_crumb User.model_name.human(count: 2), users_path
+    add_crumb @user.id.to_s, user_path(@user) if action_name.eql?('edit')
+    add_crumb @user.id.to_s if action_name.eql?('show')
+    add_crumb I18n.t('crumbs.edit_item') if action_name.eql?('edit')
+    add_crumb I18n.t('crumbs.new_item') if action_name.eql?('new')
+  end
 
   def create_params
     params.require(:user).permit(:email, :password, :password_confirmation, :role)

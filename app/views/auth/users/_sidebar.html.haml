@@ -1,0 +1,10 @@
+.sidebar-item
+  = form_tag users_path, {class: 'nav nav-sidebar navbar-form', method: :get, id: 'search-query-lists-form' } do
+    .input-group
+      = search_field_tag :query, params[:query], {class: 'form-control', placeholder: I18n.t('default_search')}
+      %span.input-group-btn
+        %button.btn.btn-default{type: 'submit'}
+          %span.glyphicon.glyphicon-search
+
+.sidebar-item.reset-filter-link
+  = link_to I18n.t('reset_filter'), users_path

@@ -1,0 +1,36 @@
+- content_for(:sidebar) do
+  = render 'sidebar'
+.main-padding
+  %h1.page-header
+    - if can?(:create, User)
+      = link_to content_tag(:span, nil, { class: 'glyphicon glyphicon-plus' }) + " #{User.model_name.human}", new_user_path, { class: 'btn btn-primary pull-right', data: {toggle: 'tooltip', placement: 'bottom' }, title: I18n.t('crumbs.new_item')}
+    = User.model_name.human(count: 2)
+  - if @users.present?
+    %table.table.table-striped
+      %thead
+        %tr
+          %th
+            = User.human_attribute_name('id')
+          %th
+            = User.human_attribute_name('email')
+          %th
+            = User.human_attribute_name('created_at')
+          %th.with-actions
+            = raw '&nbsp;'
+      %tbody
+        = content_tag_for(:tr, @users) do |user|
+          %td
+            = user.id
+          %td
+            = user.email
+          %td
+            = I18n.l(user.created_at, format: :am_um)
+          %td
+            = link_to content_tag(:span, nil, { class: 'glyphicon glyphicon-eye-open' }), user_path(user), { class: 'btn btn-sm btn-default' }
+            = link_to content_tag(:span, nil, { class: 'glyphicon glyphicon-pencil' }), edit_user_path(user), { class: 'btn btn-sm btn-default' }
+            - if can?(:destroy, user)
+              = link_to content_tag(:span, nil, { class: 'glyphicon glyphicon-trash' }), '#', { class: 'btn btn-sm btn-default destroy-entry', data: { uid: user.id } }
+    %nav.with-pagination
+      = will_paginate @users, renderer: BootstrapPagination::Rails
+  - else
+    .no-items-container= I18n.t('no_entries')

@@ -28,6 +28,8 @@ ru:
         description: Описание
         state: Статус
       user:
+        id: ID
+        created_at: Дата создания
         email: Е-Майл
         password: Пароль
         password_confirmation: Подтверждение
@@ -60,6 +62,9 @@ ru:
         form:
           header: Восстановление пароля
           submit: Сбросить
+    users:
+      form:
+        notify_user: Отправить уведомление
   wrong_url: Запрашиваемый ресурс не существует
   record_successfully:
     created: Запись успешно создана
@@ -100,4 +105,4 @@ ru:
   admin:
     tasks:
       form:
-        add_new_attachment: "Добавить прикрепление"
+        add_new_attachment: Добавить прикрепление

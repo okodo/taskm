@@ -16,16 +16,18 @@ $(document).on('click', '.states-events-gr a', function(e){
 })
 
 $(document).on('click', 'a.destroy-entry', function(e){
-  e.preventDefault();
-  turbo_loader("show");
-  $.ajax({
-    type: 'DELETE',
-    url: "/admin/tasks/"+$(this).data('tid'),
-    success: function(response){
-      turbo_loader("hide");
-      window.location.reload();
-    }
-  })
+  if(typeof($(this).data('tid')) !== 'undefined'){
+    e.preventDefault();
+    turbo_loader("show");
+    $.ajax({
+      type: 'DELETE',
+      url: "/admin/tasks/"+$(this).data('tid'),
+      success: function(response){
+        turbo_loader("hide");
+        window.location.reload();
+      }
+    })
+  }
 })
 
 function init_tasks(){

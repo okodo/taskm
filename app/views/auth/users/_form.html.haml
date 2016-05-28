@@ -1,0 +1,10 @@
+= simple_form_for @user do |f|
+  = f.input :email
+  = f.input :password
+  = f.input :password_confirmation
+  - unless @user.eql?(current_user)
+    .form-group.row
+      .checkbox.checkbox-info{style: "margin: 0px; padding-left: 34px;"}
+        = check_box_tag :notify_user, nil, false, { class: 'checkbox-primary' }
+        %label{for: :notify_user}= t('.notify_user')
+  = f.button :submit
