@@ -24,6 +24,28 @@ document.addEventListener("page:receive", function(){ turbo_loader("hide"); });
 
 $(document).on("click", "#mobile-sidebar-toggle", function(){ sidebar("toggle"); });
 
+$(document).on('click', 'a.destroy-entry', function(e){
+  var href = null;
+  if(typeof($(this).data('tid')) !== 'undefined'){
+    href = "/admin/tasks/"+$(this).data('tid');
+  }
+  if(typeof($(this).data('uid')) !== 'undefined'){
+    href = "/users/"+$(this).data('uid');
+  }
+  if(href !== null){
+    e.preventDefault();
+    turbo_loader("show");
+    $.ajax({
+      type: 'DELETE',
+      url: href,
+      success: function(response){
+        turbo_loader("hide");
+        window.location.reload();
+      }
+    })
+  }
+})
+
 function sidebar(action){
   if(action === "toggle"){
     sidebar($("#sidebar").is(":visible") ? "hide" : "show");
