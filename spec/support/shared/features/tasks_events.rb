@@ -1,6 +1,7 @@
 shared_examples_for 'tasks_events' do |_|
   it 'start task' do
     visit admin_tasks_path
+    hide_navbar
     within(".states-events-gr.btn-group[data-tid='#{tasks.first.id}']") do
       first('button.btn.btn-sm.dropdown-toggle').click
       first("a[data-event='start']").click
@@ -11,6 +12,7 @@ shared_examples_for 'tasks_events' do |_|
   it 'finish task' do
     tasks.first.start!
     visit admin_tasks_path
+    hide_navbar
     within(".states-events-gr.btn-group[data-tid='#{tasks.first.id}']") do
       first('button.btn.btn-sm.dropdown-toggle').click
       first("a[data-event='finish']").click
@@ -21,6 +23,7 @@ shared_examples_for 'tasks_events' do |_|
   it 'reopen task after start' do
     tasks.first.start!
     visit admin_tasks_path
+    hide_navbar
     within(".states-events-gr.btn-group[data-tid='#{tasks.first.id}']") do
       first('button.btn.btn-sm.dropdown-toggle').click
       first("a[data-event='reopen']").click
@@ -32,6 +35,7 @@ shared_examples_for 'tasks_events' do |_|
     tasks.first.start!
     tasks.first.finish!
     visit admin_tasks_path
+    hide_navbar
     within(".states-events-gr.btn-group[data-tid='#{tasks.first.id}']") do
       first('button.btn.btn-sm.dropdown-toggle').click
       first("a[data-event='reopen']").click

@@ -26,7 +26,7 @@ end
 
 Capybara.configure do |config|
   config.javascript_driver = :selenium
-  config.default_max_wait_time = 25
+  config.default_max_wait_time = 15
   config.match = :one
   config.exact_options = true
   config.ignore_hidden_elements = false
