@@ -10,5 +10,5 @@ before_script:
   - cp .rspec.travis .rspec
   - psql -c 'create database travis_ci_test;' -U postgres
 script:
-  - bundle exec rspec
-  - bundle exec rubocop
+  - CODECLIMATE_REPO_TOKEN=ec2cd7d73e63531786d034c6633f6ddcc7a2b6af86ed534f2bafdeeba0361a82 bundle exec rspec
+  - CODECLIMATE_REPO_TOKEN=ec2cd7d73e63531786d034c6633f6ddcc7a2b6af86ed534f2bafdeeba0361a82 bundle exec rubocop
