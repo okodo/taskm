@@ -1,0 +1,20 @@
+= simple_form_for [:admin, @task] do |f|
+  = f.input :name
+  = f.input :description
+  - if current_user.admin?
+    = f.association :user, collection: @users, label_method: :email, value_method: :id, label: Task.human_attribute_name(:email), prompt: I18n.t('promt_user'), input_html: { class: 'select-menu' }
+  = f.nested_fields_for :attachments do |a|
+    %fieldset
+      %legend
+        = Attachment.model_name.human
+        = a.remove_nested_fields_link '&otimes;'.html_safe, { class: 'remove-steps pull-right' }
+      - unless a.object.new_record?
+        %div
+          = a.object&.data_file&.file&.filename
+          = number_to_human_size(a.object&.data_file&.file&.size&.to_f)
+      = a.input :data_file
+      = a.hidden_field :data_file_cache
+  .form-group
+    = f.add_nested_fields_link :attachments, t('.add_new_attachment'), { class: 'btn btn-default btn-xs pull-right' }
+    .clearfix
+  = f.button :submit

@@ -4,6 +4,7 @@ class Admin::TasksController < ApplicationController
   load_and_authorize_resource params_method: :task_params
   before_action :set_users, only: %i(index new edit)
   before_filter :set_crumbs, except: %i(destroy start finish reopen)
+  before_action :build_attr, only: %i(new edit)
 
   def index
     @tasks = @tasks.preload(:user).filter(params).page(page_parameter).load
@@ -20,6 +21,7 @@ class Admin::TasksController < ApplicationController
       redirect_to [:admin, @task], notice: I18n.t('record_successfully.created')
     else
       set_users
+      build_attr
       render :new
     end
   end
@@ -32,6 +34,7 @@ class Admin::TasksController < ApplicationController
       redirect_to [:admin, @task], notice: I18n.t('record_successfully.updated')
     else
       set_users
+      build_attr
       render :edit
     end
   end
@@ -57,6 +60,10 @@ class Admin::TasksController < ApplicationController
   end
 
   private
+
+  def build_attr
+    @task.build_attachments
+  end
 
   def task_params
     pr = params.require(:task).permit(:name, :description, :user_id, attachments_attributes: [:data_file, :data_file_cache, :id, :_destroy])

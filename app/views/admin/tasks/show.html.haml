@@ -1,0 +1,36 @@
+.main-padding
+  %h1.page-header
+    = link_to content_tag(:span, nil, { class: 'glyphicon glyphicon-arrow-left' }), admin_tasks_path, { class: 'btn btn-primary local-nav-links pull-right' }
+    = link_to content_tag(:span, nil, {class: 'glyphicon glyphicon-pencil' }), [:edit, :admin, @task], {class: 'btn btn-primary local-nav-links pull-right' }
+    = link_to content_tag(:span, nil, {class: 'glyphicon glyphicon-plus' }), [:new, :admin, :task], {class: 'btn btn-primary local-nav-links pull-right' }
+    = @task.name
+
+  .col-md-8.col-md-offset-2
+    .item
+      .attr-title= "#{Task.human_attribute_name(:state)}:"
+      .value= I18n.t("tasks_states.#{@task.state}")
+    .item
+      .attr-title= "#{Task.human_attribute_name(:id)}:"
+      .value= @task.id
+    .item
+      .attr-title= "#{Task.human_attribute_name(:description)}:"
+      .value= @task.description
+    - if current_user.admin?
+      .item
+        .attr-title= "#{Task.human_attribute_name(:email)}:"
+        .value= @task.email
+    .item
+      .attr-title= "#{Task.human_attribute_name(:created_at)}:"
+      .value= I18n.l(@task.created_at, format: :am_um)
+    - if @task.attachments.present?
+      %fieldset.item
+        %legend= Attachment.model_name.human(count: 2)
+        %ul.attachments-lists
+          - @task.attachments.each do |attachment|
+            - if attachment.image?
+              %li.attachment-image
+                = image_tag admin_attachment_path(attachment)
+            - else
+              %li= link_to "#{attachment.data_file.file.filename} (#{number_to_human_size(attachment.data_file.file.size.to_f)})", admin_attachment_path(attachment)
+
+

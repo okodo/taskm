@@ -1,6 +1,6 @@
 $(document).on('ready page:load', init_tasks);
 
-$(document).on('click', '#states-events-gr a', function(e){
+$(document).on('click', '.states-events-gr a', function(e){
   e.preventDefault();
   if(!$(this).hasClass('disabled')){
     turbo_loader("show");

@@ -16,6 +16,7 @@ Rails.application.routes.draw do
       put :finish, on: :member
       put :reopen, on: :member
     end
+    resources :attachments, only: %i(show)
     root to: 'tasks#index'
   end
 

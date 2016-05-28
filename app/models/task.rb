@@ -53,4 +53,8 @@ class Task < ActiveRecord::Base
     attrs.slice(:id, :data_file, :data_file_cache).values.all?(&:blank?)
   end
 
+  def build_attachments
+    attachments.build if attachments.reject(&:marked_for_destruction?).blank?
+  end
+
 end

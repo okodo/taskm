@@ -15,16 +15,24 @@ ru:
         one: Пользователь
         few: Пользователи
         other: Пользователей
+      attachment:
+        one: Прикрепление
+        few: Прикрепления
+        other: Прикреплений
     attributes:
       task:
         id: Ключ
         created_at: Дата
         name: Название
         email: Пользователь
+        description: Описание
+        state: Статус
       user:
         email: Е-Майл
         password: Пароль
         password_confirmation: Подтверждение
+      attachment:
+        data_file: Файл
   postman:
     subjects:
       password_forgotten: Восстановление пароля
@@ -56,7 +64,7 @@ ru:
   record_successfully:
     created: Запись успешно создана
     destroyed: Запись успешно удалена
-    updated: Запись успешно удалена
+    updated: Запись успешно изменена
   users:
     successfully_updated: Запись успешна изменена
     successfully_updated_self: Ваши настройки успешно изменены
@@ -88,3 +96,8 @@ ru:
     reopen: Открыть
   edit: Редактировать
   destroy: Удалить
+  promt_user: Укажите пользователя
+  admin:
+    tasks:
+      form:
+        add_new_attachment: "Добавить прикрепление"

@@ -17,7 +17,7 @@ gem 'jquery-ui-rails'
 gem 'will_paginate'
 gem 'will_paginate-bootstrap'
 gem 'crummy'
-gem 'nested_form'
+gem 'nested_form_fields'
 
 gem 'carrierwave'
 gem 'ffaker'
@@ -28,6 +28,7 @@ gem 'aasm'
 gem 'bcrypt', '~> 3.1.7'
 
 gem 'cancancan'
+gem 'simple_form'
 
 group :development do
   gem 'letter_opener'

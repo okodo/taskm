@@ -14,6 +14,8 @@
           %th
             = Task.human_attribute_name('name')
           %th
+            = Task.human_attribute_name('description')
+          %th
             = Task.human_attribute_name('created_at')
           - if current_user.admin?
             %th
@@ -27,12 +29,14 @@
           %td
             = task.name
           %td
+            = task.description
+          %td
             = I18n.l(task.created_at, format: :am_um)
           - if current_user.admin?
             %td
               = task.email
           %td
-            #states-events-gr.btn-group
+            .states-events-gr.btn-group{ data: { tid: task.id } }
               - if task.state.eql?('new')
                 - btn_class = 'btn-success'
               - elsif task.state.eql?('started')

@@ -8,7 +8,7 @@
  *= require jquery-form
  *= require jquery.cookie
  *= require jquery.easing
- *= require jquery_nested_form
+ *= require nested_form_fields
  *= require bootstrap-toggle
  *= require select2
  *= require moment
@@ -50,7 +50,7 @@ function init_main(){
         ele: 'body',
         type: $("#flash-message-full").data('type'),
         allow_dismiss: true,
-        delay: 300000,
+        delay: 3000,
         align: 'center',
         width: 400,
         offset: {from: 'top', amount: 100}
