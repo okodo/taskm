@@ -1,5 +1,7 @@
 class Admin::TasksController < ApplicationController
 
+  include AuthHelper
+
   before_action :require_authentication
   load_and_authorize_resource params_method: :task_params
   before_action :set_users, only: %i(index new edit)

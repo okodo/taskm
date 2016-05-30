@@ -1,5 +1,7 @@
 class Admin::AttachmentsController < ApplicationController
 
+  include AuthHelper
+
   before_action :require_authentication
   load_and_authorize_resource
 

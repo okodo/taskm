@@ -1,5 +1,7 @@
 class Auth::PasswordsController < ApplicationController
 
+  include AuthHelper
+
   before_action :require_no_authentication
   before_action :assert_reset_token_passed, only: %i(edit update)
 

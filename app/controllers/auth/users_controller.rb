@@ -1,5 +1,7 @@
 class Auth::UsersController < ApplicationController
 
+  include AuthHelper
+
   before_action :require_authentication
   load_and_authorize_resource
   before_filter :set_crumbs, except: %i(destroy)
