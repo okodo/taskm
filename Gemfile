@@ -21,6 +21,7 @@ gem 'nested_form_fields'
 
 gem 'carrierwave'
 gem 'ffaker'
+gem 'factory_girl_rails'
 gem 'rails-i18n', '~> 4.0.0'
 gem 'email_validator'
 gem 'aasm'
@@ -52,7 +53,6 @@ group :development, :test do
   gem 'guard-rspec'
   gem 'rubocop', require: false
   gem 'shoulda'
-  gem 'factory_girl_rails'
 end
 
 group :test do
