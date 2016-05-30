@@ -29,6 +29,7 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'cancancan'
 gem 'simple_form'
+gem 'figaro'
 
 group :development do
   gem 'letter_opener'

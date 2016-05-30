@@ -18,8 +18,8 @@ Rails.application.configure do
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = false
   config.action_mailer.default charset: 'utf-8'
-  config.action_mailer.default_url_options = { host: 'taskm.valucon-coding.de', protocol: 'https' }
-  config.action_mailer.asset_host = 'https://taskm.valucon-coding.de'
+  config.action_mailer.default_url_options = { host: 'taskm.valucon-coding.de', protocol: 'http' }
+  config.action_mailer.asset_host = 'http://taskm.valucon-coding.de'
   config.mailers_default_from = 'info@valucon-coding.de'
   config.action_mailer.smtp_settings = {
     address: ENV['SMTP_ADDRESS'],

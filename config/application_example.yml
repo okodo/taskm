@@ -1,0 +1,4 @@
+SMTP_ADDRESS: "..."
+SMTP_USER_NAME: "..."
+SMTP_PWD: "..."
+SECRET_KEY_BASE: "..."
