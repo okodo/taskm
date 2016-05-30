@@ -6,7 +6,7 @@ $(document).on('click', '.states-events-gr a', function(e){
     turbo_loader("show");
     $.ajax({
       type: 'PUT',
-      url: "/admin/tasks/"+$(this).data('tid')+"/"+$(this).data('event'),
+      url: Routes[$(this).data('event') + "_admin_task_path"]($(this).data('tid')),
       success: function(response){
         turbo_loader("hide");
         window.location.reload();

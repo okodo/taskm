@@ -170,6 +170,9 @@ GEM
       turbolinks
     jquery-ui-rails (5.0.5)
       railties (>= 3.2.16)
+    js-routes (1.2.5)
+      railties (>= 3.2)
+      sprockets-rails
     json (1.8.3)
     kgio (2.10.0)
     launchy (2.4.3)
@@ -400,6 +403,7 @@ DEPENDENCIES
   headless
   jquery-turbolinks
   jquery-ui-rails
+  js-routes
   letter_opener
   meta_request
   nested_form_fields
@@ -430,4 +434,4 @@ RUBY VERSION
    ruby 2.3.0p0
 
 BUNDLED WITH
-   1.12.4
+   1.12.5

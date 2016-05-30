@@ -15,6 +15,7 @@
  *= require metisMenu
  *= require startbootstrap-sb-admin-2
  *= require bootstrap-growl/jquery.bootstrap-growl
+ *= require js-routes
  *= require_tree .
 */
 
@@ -27,10 +28,10 @@ $(document).on("click", "#mobile-sidebar-toggle", function(){ sidebar("toggle");
 $(document).on('click', 'a.destroy-entry', function(e){
   var href = null;
   if(typeof($(this).data('tid')) !== 'undefined'){
-    href = "/admin/tasks/"+$(this).data('tid');
+    href = Routes.admin_task_path($(this).data('tid'));
   }
   if(typeof($(this).data('uid')) !== 'undefined'){
-    href = "/users/"+$(this).data('uid');
+    href = Routes.user_path($(this).data('uid'));
   }
   if(href !== null){
     e.preventDefault();
