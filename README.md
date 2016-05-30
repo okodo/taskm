@@ -3,7 +3,12 @@
 [![Test Coverage](https://codeclimate.com/github/okodo/taskm/badges/coverage.svg)](https://codeclimate.com/github/okodo/taskm/coverage)
 
 # Task Manager
-Приложение было сделано в качестве тестового задания.
+Приложение было сделано в качестве тестового задания и развёрнуто на сервере: [taskm.valucon-coding.de](http://taskm.valucon-coding.de)
+
+В базе данных были созданы фэйковые данные и тестовый аккаунт для Админа и Пользователя:
+
+Admin: init@admin.ru (Pwd: initialize)
+User: init@user.ru (Pwd: initialize)
 
 ## Описание потребностей
 
