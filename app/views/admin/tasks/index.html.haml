@@ -3,7 +3,7 @@
 .main-padding
   %h1.page-header
     - if can?(:create, Task)
-      = link_to content_tag(:span, nil, { class: 'glyphicon glyphicon-plus' }) + " #{Task.model_name.human}", new_admin_task_path, { class: 'btn btn-primary pull-right', data: {toggle: 'tooltip', placement: 'bottom' }, title: I18n.t('crumbs.new_item')}
+      = link_to content_tag(:span, nil, { class: 'glyphicon glyphicon-plus' }) + " #{Task.model_name.human}", new_admin_task_path, { class: 'btn btn-success pull-right', data: {toggle: 'tooltip', placement: 'bottom' }, title: I18n.t('crumbs.new_item')}
     = Task.model_name.human(count: 2)
   - if @tasks.present?
     %table.table.table-striped
